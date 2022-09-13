@@ -1,0 +1,78 @@
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+          <style>
+            body
+            {
+                align-items: center;
+                text-align: center;
+                background-color: aquamarine;
+               
+            }
+            div
+            {
+                align-items: center;
+                align-content: center;
+            }
+            form
+            {
+                width: 100%;
+                text-align: center;
+                display: inline-block;
+                
+                margin-top: 15%;
+            }
+            .radio
+            {
+                margin: 10px;
+            }
+            .formitems
+            {
+                
+                display: inline-block;
+                background-color: white;
+                border: 2px solid black;
+            }
+            input,label,span
+            {
+                margin: 10px 20px;
+            }
+            button
+            {
+                width: 100%;
+                background-color: rgb(52, 52, 156);
+                color: white;
+               
+            }
+            .formitems2
+            {
+                margin: 20px;
+               
+            }
+        </style>
+</head>
+    <body>
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="document">
+        <p>{{message}}</p>
+    </div>
+    {% endfor %}
+    
+    <form action="{% url 'signin' %}" method="post" class="form-group">
+        <div class="formitems">
+            <div class="formitems2">
+            <span>Log in to your account</span><br><br>
+        <label for="user_name">User name</label>
+        <input type="text" name="user_name" required minlength="6" n><br><br>
+     
+        <label for="password">Password</label>
+        <input type="password" name="password" required minlength="8"><br><br>
+        <button type="submit" class="btn btn-primary">submit</button><br><br>
+        <span>Not a user ?<a href="{% url 'registers' %}">Register</a></span>
+    </div>
+    </div>
+    </form>
+    </body>
+</html>

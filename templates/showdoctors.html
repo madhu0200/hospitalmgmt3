@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show doctors</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+    <style>
+        div
+        {
+        border:2px solid black;
+        display:inline-block;
+        text-align: center;
+        background-color: aquamarine;
+        }
+        b,img,button{
+            margin:10px;
+        }
+        body
+        {
+            text-align: center;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+    {% for doctor in doctors %}
+    <div>
+    <b>doctor name :</b><span>{{doctor.user_name}}</span><br><br>
+            <img src="{{doctor.profile_pic.url}}" alt="profile pic" style="border-radius:50%;height:100px;width:80%"><br><br>
+    <a href="{% url 'appointment' patient_name=patient_name doctor_name=doctor.user_name %}"><button class="btn btn-primary">book appointment</button></a><br><br>
+        </div>
+{% endfor %}
+</body>
+</html>

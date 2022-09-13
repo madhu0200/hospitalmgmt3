@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+    <style>
+        form,div
+        {
+            align-items:center;
+            
+        }
+        form
+        {
+        width: 100%;
+        text-align: center;
+        background-color:aqua ;
+        }
+        .form1
+        {
+            border: 2px solid black;
+        }
+        .form2
+        {
+            display: inline-block;
+            margin: 20px;
+            background-color: white;
+            border: 2px solid black;
+        }
+        button
+        {
+            width: 90%;
+            margin: 20px;
+        }
+        .input
+        {
+            float: right;
+            margin-right: 30px;
+        }
+        input
+        {
+            margin-left: 10px;
+        }
+        .label
+        {
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+{% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="document">
+        <p>{{message}}</p>
+    </div>
+    {% endfor %}
+<div class="body">
+    <div >
+        <form action="{% url 'registers' %}" method="post" enctype="multipart/form-data">
+            <div class="form1">
+                <div class="form2">
+                <h1><u>Register</u></h1>
+            <input type="radio" name="user_type"  value="doctor" required>doctor
+            <input type="radio" name="user_type"  value="patient" required>patient<br><br>
+
+            <label for="first_name">First name</label>
+            <input type="text" class="input" name="first_name" required minlength="3" ><br><br>
+
+            <label for="last_name">Last name</label>
+            <input type="text" class="input" name="last_name" required minlength="3"><br><br>
+
+            <label for="user_name">User name</label>
+            <input type="text" class="input" name="user_name" required minlength="6"><br><br>
+
+            <label  class="label" for="profile_pic">profile picture</label>
+            <input type="file" accept="image/jpeg,image/png" name="profile_pic" required><br><br>
+            
+                <label>Address Line1</label>
+                <input type="text" class="input" name="address_line1" required><br><br>
+
+                <label>city</label>
+                <input type="text" class="input" name="city" required><br><br>
+
+                <label>state</label>
+                <input type="text" class="input" name="state" required><br><br>
+
+                <label>Pin code</label>
+                <input type="number" class="input" name="pincode" maxlength="6" required><br><br>
+
+            <label for="email">Email</lable>
+            <input type="email" class="input" name="email" required minlength="8"><br><br>
+
+            <label for="password">Password</label>
+            <input type="password" class="input" name="password" required minlength="8"><br><br>
+
+            <label for="password2">Confirm password</label>
+            <input type="password" class="input" name="password2" required minlength="8"><br><br>
+
+            <button type="submit" class="btn btn-primary">sumbit</button>
+        </div>
+        </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

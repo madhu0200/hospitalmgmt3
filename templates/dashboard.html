@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>d{{context.user_name}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+          <style>
+        .formbody
+        {
+                width: 100%;
+              background-color: aqua;
+                text-align: center;
+        }
+        .body
+        {
+                text-align: center;
+                display: inline-block;
+                background-color: white;
+                border: 2px solid black;
+        }
+        span
+        {
+              
+                margin-right: 10%;
+        }
+                
+        label
+        {
+                font-weight: bold;
+        }
+          </style>
+</head>
+<body>
+   {% load static %}
+    {% for message in messages %}
+            <div class="alert alert-{{message.tags}}" role="alert">
+                    <p> {{ message }} </p>
+            </div>
+    {% endfor %}
+    <div class="formbody">
+    <div class="body">
+
+            <img src="{{context.profile_pic.url}}" alt="profile pic" style="border-radius:50%;height:200px;width:200px"><br><br>
+            <span> <label>Welcome {{context.user_type}}</label>  {{context.user_name}}</span><br>
+            
+            <label for="first_name">First name :</label>
+            <span name="firstnam">{{context.first_name}}</span><br><br>
+            <label for="last_name">Last name :</label>
+            <span>{{context.last_name}}</span><br><br>
+
+
+            <label>Address:</label>
+            <span>{{context.address_line1}},{{context.city}},{{context.state}},{{context.pincode}}</span><br><br>
+            <label for="email">Email :</label>
+            <span>{{context.email}}</span><br><br>
+            <label for="password">Password :</label>
+            <span>{{context.password}}</span>
+        <br><br>
+
+        {% if context.user_type == 'doctor' %}
+        <a href="{% url 'createblogs' %}"><button type="submit" class="btn btn-primary">create blogs</button></a>
+        <a href="{% url 'showdraft' %}"><button type="submit" class="btn btn-primary">show draft</button></a><br><br>
+
+
+        {% endif %}
+        {% if context.user_type == 'patient' %}
+
+        <a href="{% url 'bookappointment' patient_name=context.user_name %}"  value={{context.user_name}} name="patient_name"><button type="submit" class="btn btn-primary">book appointments</button></a>
+        {% endif %}
+        <a href="{% url 'viewblogs' %}"><button type="submit" class="btn btn-primary">view blogs</button></a>
+<a href="{% url 'showappointment' user_name=context.user_name %}" id="user_name" value={{context.user_name}} name="user_name"><button type="submit" class="btn btn-primary">show appointments</button></a>        </div>
+</div>
+</body>
+</html>

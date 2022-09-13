@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body
+        {
+            text-align: center;
+            background-color:aqua ;
+        }
+        div
+        {
+            border: 2px solid black;
+            text-align: center;
+            margin: 0% 35%;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div>
+<h1>your appointment details</h1>
+ <b>doctor name :</b>   {{doctor_name}}<br><br>
+  <b>appointment date :</b>  {{context.appointment_date}}<br><br>
+<b>appointment starting time :</b>{{context.appointment_starttime}}<br><br>
+<b>appointment ending time :</b>{{context.appointment_endtime}}<br><br>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>appointment form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+    crossorigin="anonymous">
+    
+</head>
+<style>
+  body{
+    background-color: aqua;
+  }
+  div
+  {
+    border: 2px solid black;
+    
+  }
+  div
+  {
+    margin: 0% 35%;
+    text-align: center;
+    background-color: aquamarine;
+  }
+  form{
+    text-align: center;
+    background-color: aqua;
+  }
+</style>
+<body>
+    {% for message in messages %}
+            <div class="alert alert-{{message.tags}}" role="alert">
+                    <p> {{ message }} </p>
+            </div>
+    {% endfor %}
+      <form action="{% url 'bookanappointment' %}" method="post">
+        <h1>appointment form</h1>
+          <div>
+        <input type="text" name="patient_name" value="{{patient_name}}" style="display:none;"><br>
+              <label for="doctor_name">doctor name</label>
+        <input type="text" name="doctor_name" value="{{doctor_name}}" style="" readonly><br><br>
+          <label for="required_speciality">required speciality</label>
+          <input type="text" required name="required_speciality"><br><br>
+          <label for="appointment_date">appointment date</label>
+          <input type="date" required name="appointment_date"><br><br>
+          <label for="appointment_time">appointment time</label>
+          <input type="time" required name="appointment_time"><br><br>
+          <input type="submit" value="confirm" class="btn btn-primary" style="width: 80%;">
+              </div>
+      </form>
+</body>
+</html>

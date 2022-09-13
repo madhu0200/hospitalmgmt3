@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>your appointments</title>
+        
+    </head>
+    <style>
+        .div2
+        {
+            border: 2px solid black;
+            text-align: center;
+            height: 100%;
+            background-color: aquamarine;
+        }
+        .div
+        {
+            display: inline-block;
+            border: 2px solid black;
+            background-color: aqua;
+            
+        }
+    </style>
+    <body>
+    <div class="div2">
+        <h1>your appointments are</h1>
+        {% for appointment in appointment %}
+        <div class="div">
+        {% if user_type == 'doctor' %} 
+        <b>patient name :</b>{{appointment.patient_name}}<br><br>
+        {%endif%} 
+        {% if user_type == 'patient' %} 
+        <b>doctor name :</b>{{appointment.doctor_name}}<br><br>
+        {%endif%} 
+        <b>speciality :</b>{{appointment.required_speciality}}<br><br>
+        <b>appointment date :</b>{{appointment.appointment_date}}<br><br>
+        <b>appoiintment starting time :</b>{{appointment.appointment_starttime}}<br><br>
+        <b>appointment end time :</b>{{appointment.appointment_endtime}}<br><br>
+            </div>
+    {% endfor %}
+        </div>
+    </body>
+</html>

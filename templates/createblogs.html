@@ -1,0 +1,53 @@
+<html>
+<style>
+    form
+    {
+    background-color: aqua;}
+    div
+    {
+    display: inline-block;
+    text-align: center;
+    width: 60%;
+    margin: 0% 20%;
+    border: 2px solid black;
+    background-color: aquamarine;
+    }
+</style>
+    <body>
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="document">
+        <p>{{message}}</p>
+    </div>
+    {% endfor %}
+        <form action="{% url 'createblogs' %}" method="post" enctype="multipart/form-data">
+            <div>
+        <input type="text" style="display:none;outline: none;" name="user_name" id="val1" value="{{context}}">
+        <h1>welcome {{context}}</h1>
+        <label for="title">title</label>
+        <input type="text" required minlength="3" name="title" value="{{blog.title}}"><br><br>
+        <label for="images">image</label>
+        <input type="file" accept="image/jpeg,image/png" required name="image" value="{{blog.image.url}}"><br><br>
+        <label for="category">select category of blog</label>
+        <select required name="category" value="{{blog.category}}">
+           
+            <option>Mental health</option>
+            <option>covid 19</option>
+            <option>heart disease</option>
+            <option>immunization</option>
+        </select><br><br>
+        <label for="summary">summary</label>
+        <textarea rows="5" cols="100" name="summary" required >{{blog.summary}}</textarea><br><br>
+        <label>content</label>
+        <textarea rows="20" cols="100" name="content" required >{{blog.content}}</textarea><br><br>
+            <label for="draft">do you want to save it as draft</label>
+            {% if blog.title == None %}
+
+            <input type="radio" name="draft" value="True" required>Yes
+
+            {% endif %}
+            <input type="radio" name="draft" value="False" required>No<br><br>
+        <input type="submit" value="submit">
+</div>
+    </form>
+    </body>
+</html>

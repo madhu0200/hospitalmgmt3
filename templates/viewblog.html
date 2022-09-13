@@ -1,0 +1,71 @@
+<html>
+<style>
+    div
+    {
+    border:2px solid black;
+    text-align: center;
+    display: inline-flex;
+    }
+    table
+    {
+        margin: 20px;
+    }
+    td,tr
+    {
+        margin: 15px;
+    }
+   
+</style>
+    <body>
+        <b>welcome {{username}}</b><br><br>
+        {% if user_type == 'doctor' %}
+        <b>your blogs are</b><br><br>
+        {% endif %}
+        {% for blog in context %}
+        <form action="{% url 'createblogs' %}" method="post" enctype="multipart/form-data">
+        <div>
+            <div>
+        <img src="{{blog.image.url}}" height="300px" width="300px"><br><br>
+                </div>
+            <table>
+                <tr>
+        <td><b>blog no :</b></td><td>{{blog.id}}</tr>
+                </tr>
+                <tr>
+        <td><b>title :</b></td><td>{{blog.title}}</td>
+                    </tr>
+                {% if user_type == 'patient' %}
+                    <tr>
+        <td><b>Written by :</b></td><td>{{blog.user_name}}</td>
+    </tr>
+                {% endif%}
+    <tr>
+        <td><b>summary :</b></td>
+        <td>
+
+
+            {% if user_type == 'patient' %}
+            {{ blog.summary |slice:":155" }}
+            <span>...</span>
+            {%endif%}
+            {% if user_type == 'doctor' %}
+            {{blog.summary}}
+            {%endif%}
+        </td>
+    </tr>
+    <tr>
+        <td><b>content :</b></td><td>{{blog.content}}</td>
+    </tr>
+                <tr>
+                    <td><b>draft</b></td><td>{{blog.draft}}</td>
+                </tr>
+                </table>
+            {% if draft == 'True' %}
+            <input type="submit" value="submit">
+            {% endif %}
+        </div>
+
+        </form>
+        {% endfor %}
+    </body>
+</html>
